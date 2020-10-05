@@ -1,18 +1,11 @@
 import express, { NextFunction } from "express";
 import bodyParser from "body-parser";
-import dotenv from "dotenv";
 import { error, setDefaultLevel, levels } from "loglevel";
 
 import { initialize } from "./utils/discordUtil";
 
 // Create Express server
 const app = express();
-
-// dotenv configuration
-const result = dotenv.config();
-if (result.error) {
-    throw result.error;
-}
 
 // loglevel configuration
 setDefaultLevel(levels.INFO);
