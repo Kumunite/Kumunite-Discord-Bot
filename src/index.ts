@@ -1,4 +1,5 @@
 import * as Discord from "discord.js";
+import { MessageAttachment } from "discord.js";
 
 const client = new Discord.Client();
 const prefix = "!";
@@ -7,7 +8,7 @@ const prefix = "!";
     try {
         await client.login(process.env.BOT_TOKEN);
 
-        client.on("message", function (message) {
+        client.on("message", async function (message) {
             console.log(message);
             if (message.author.bot) return;
             if (!message.content.startsWith(prefix)) return;
@@ -18,8 +19,19 @@ const prefix = "!";
 
             if (command === "ping") {
                 const timeTaken = Date.now() - message.createdTimestamp;
-                message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
+                await message.reply(`Pong! This message had a latency of ${timeTaken}ms.`);
+            } else if (message.content === "!rip") {
+                // Create the attachment using MessageAttachment
+                const attachment = new MessageAttachment("https://i.imgur.com/w3duR07.png");
+                // Send the attachment in the message channel
+                await message.channel.send(attachment);
             }
         });
-    } catch (e) {}
+
+        client.on("ready", () => {
+            console.log(`Logged in as ${client.user!.tag}!`);
+        });
+    } catch (error) {
+        console.log(error.message);
+    }
 })();
