@@ -8,7 +8,7 @@ const prefix = "!";
     try {
         await client.login(process.env.BOT_TOKEN);
 
-        client.on("message", async function (message: Message) {
+        client.on("message", async (message: Message) => {
             if (message.author.bot) return;
             if (!message.content.startsWith(prefix)) return;
 
