@@ -1,0 +1,46 @@
+{
+    "name": "kumunite-discord-bot",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "start": "node -r dotenv/config dist/src/server.js",
+        "prepare": "npm run build && npm run test",
+        "test": "mocha -r ts-node/register src/tests/**/*.test.ts",
+        "coverage": "nyc mocha -r ts-node/register test/**/*.test.ts",
+        "build": "tsc -p ./tsconfig.json",
+        "dev": "npm run build && ts-node -r dotenv/config ./src/server.ts",
+        "format": "prettier --write --config ./.prettierrc ./src",
+        "lint": "eslint . --ext .ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Kumunite/Kumunite-Discord-Bot.git"
+    },
+    "author": "okanaslan",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Kumunite/Kumunite-Discord-Bot/issues"
+    },
+    "homepage": "https://github.com/Kumunite/Kumunite-Discord-Bot#readme",
+    "dependencies": {
+        "discord.js": "^12.3.1",
+        "dotenv": "^8.2.0"
+    },
+    "devDependencies": {
+        "@types/dotenv": "^8.2.0",
+        "@types/prettier": "^2.1.1",
+        "@typescript-eslint/eslint-plugin": "^4.3.0",
+        "@typescript-eslint/parser": "^4.3.0",
+        "@types/chai": "^4.2.12",
+        "@types/mocha": "^8.0.3",
+        "prettier": "^2.1.2",
+        "mocha": "^8.1.3",
+        "nyc": "^15.1.0",
+        "chai": "^4.2.0",
+        "ts-node": "^9.0.0",
+        "typescript": "^4.0.3",
+        "eslint": "^7.10.0",
+        "eslint-config-prettier": "^6.12.0"
+    }
+}
