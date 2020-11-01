@@ -1,5 +1,5 @@
 import * as Discord from "discord.js";
-import { MessageAttachment, Message, MessageEmbed, Channel } from "discord.js";
+import { MessageAttachment, Message, GuildMember, PartialGuildMember } from "discord.js";
 
 const client = new Discord.Client();
 const prefix = "!";
@@ -53,13 +53,31 @@ export const initialize = async () => {
                     await message.reply("You didn't mention the user to kick!");
                 }
             }
+
+            if (message.content.startsWith("!addMajor")) {
+            }
+
+            if (message.content.startsWith("!addMinor")) {
+                try {
+                    const user = message.mentions.users.first();
+                    let roles = await member.guild.roles.fetch();
+                    let newbieRole = roles.cache.find((r) => {
+                        return r.name == "newbie";
+                    });
+                    if (newbieRole != null) {
+                        await member.roles.add(newbieRole, "New Members");
+                    }
+                } catch (e) {
+                    console.log(e.message);
+                }
+            }
         });
 
         client.on("ready", () => {
             console.log(`Logged in as ${client.user!.tag}!`);
         });
 
-        client.on("guildMemberAdd", async (member) => {
+        client.on("guildMemberAdd", async (member: GuildMember | PartialGuildMember) => {
             try {
                 let roles = await member.guild.roles.fetch();
                 let newbieRole = roles.cache.find((r) => {
