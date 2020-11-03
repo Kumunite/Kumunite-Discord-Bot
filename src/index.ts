@@ -14,8 +14,16 @@ const initialize = async () => {
             if (message.author.bot) return;
             if (!message.content.startsWith(prefix)) return;
 
+            if (message.content.startsWith("!help")) {
+                await discordUtil.help(message);
+            }
+
             if (message.content.startsWith("!addRole")) {
                 await discordUtil.createRole();
+            }
+
+            if (message.content.startsWith("!listRoles")) {
+                await discordUtil.listRoles(message);
             }
 
             if (message.content.startsWith("!addMajor")) {
@@ -38,7 +46,9 @@ const initialize = async () => {
                 if (newbieRole != null) {
                     await member.roles.add(newbieRole, "New Members");
                 }
-                await member.send(`Welcome to the server, ${member}`);
+                await member.send(
+                    ""
+                );
             } catch (error) {
                 console.log(error.message);
             }
