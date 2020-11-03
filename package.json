@@ -4,7 +4,7 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "start": "ts-node src/index.ts",
+        "start": "ts-node -r dotenv/config src/index.ts",
         "prepare": "npm run test",
         "test": "mocha -r ts-node/register src/tests/**/*.test.ts",
         "coverage": "nyc mocha -r ts-node/register test/**/*.test.ts",

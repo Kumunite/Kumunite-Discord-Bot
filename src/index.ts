@@ -22,14 +22,14 @@ const initialize = async () => {
                 await discordUtil.addRole(message);
             }
 
-            if (message.content.startsWith("!addMinor")) {
-                await discordUtil.addRole(message);
+            if (message.content.startsWith("!removeMajor")) {
+                await discordUtil.removeRole(message);
             }
         });
 
-        client.on("ready", () => {
-            console.log(`Logged in as ${client.user!.tag}!`);
-        });
+        // client.on("ready", () => {
+        //     console.log(`Logged in as ${client.user!.tag}!`);
+        // });
 
         client.on("guildMemberAdd", async (member: GuildMember | PartialGuildMember) => {
             try {
@@ -47,3 +47,9 @@ const initialize = async () => {
         console.log(error.message);
     }
 };
+
+initialize()
+    .then(() => {})
+    .catch((error) => {
+        console.log(error);
+    });
