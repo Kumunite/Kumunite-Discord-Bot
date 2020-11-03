@@ -15,15 +15,15 @@ const initialize = async () => {
             if (!message.content.startsWith(prefix)) return;
 
             if (message.content.startsWith("!addRole")) {
-                discordUtil.createRole();
+                await discordUtil.createRole();
             }
 
             if (message.content.startsWith("!addMajor")) {
-                discordUtil.addRole();
+                await discordUtil.addRole(message);
             }
 
             if (message.content.startsWith("!addMinor")) {
-                discordUtil.addRole();
+                await discordUtil.addRole(message);
             }
         });
 
